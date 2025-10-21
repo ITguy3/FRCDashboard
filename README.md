@@ -30,7 +30,7 @@ Before running your dashboard, you'll need to install the node dependencies by `
 FRC Dashboard supports display of MJPG camera streams. Once you've created a stream (using WPILib's `CameraServer` class, [mjpg-streamer](https://robotpy.github.io/2016/01/14/mjpg-streamer-for-roborio/) (deprecated), or another method), update `style.css` to use the IP of your live camera feed. Usually this is something like `roborio-XXXX-frc.local:1181/?action=stream`, where `XXXX` is your team's number. The port increases based on camera number, for example, `1181` is Camera 1, and `1182` is Camera 2. **Note:** not every robot follows this rule. Your port may be `5800` or something else.
 
 ## Building
-https://fhsnixnews.com/wp-content/uploads/2023/03/sap.png
+![alt text](image.png)
 
 Some users may wish to compile their dashboard applications into standalone `.exe` or `.app` files.
 
