@@ -121,8 +121,9 @@
         }
 
         function pauseTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
+            NetworkTables.putValue('/Dashboard/Timer/Pause', true);
+            // clearInterval(timerInterval);
+            // timerInterval = null;
         }
 
         // Set initial display
