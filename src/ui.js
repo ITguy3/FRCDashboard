@@ -58,7 +58,8 @@ NetworkTables.addKeyListener('/SmartDashboard/example_variable', (key, value) =>
     ui.example.readout.data = 'Value is ' + value;
 });
 
-NetworkTables.addKeyListener('/DashboardData/MatchTime', (key, value) => {
+// i luv dashboad
+NetworkTables.addKeyListener('/Smartdasboard/matchTime', (key, value) => {
     // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
     ui.timer.textContent = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + parseInt(value % 60);
