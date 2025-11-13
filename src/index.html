@@ -16,54 +16,83 @@
         button {
             font-size: 16px;
             padding: 10px 20px;
-            margin: 6px;
+            margin: 5px;
         }
     </style>
 </head>
 
 <body>
     <div id="timer">2:15</div>
-    <button onclick="startTimer()">Start</button>
-    <button onclick="pauseTimer()">Pause</button>
-
-    <header>
-        <!-- Tells whether robot is connected to dashboard. -->
-        <div id="robot-state">Unknown state</div>
-        <button id="connect-button">Connect</button>
-    </header>
-
-    <div id="camera"></div>
-
-    <article>
-        <!-- Gyroscope -->
-        <svg id="gyro">
-            <circle cx="85" cy="85" r="83"></circle>
-            <circle cx="85" cy="85" r="50"></circle>
-            <rect id="gyro-arm" x="80" y="5" width="10" height="80"></rect>
-            <text id="gyro-number" x="90" y="115">0º</text>
-        </svg>
-
-        <!-- Example robot diagram -->
-        <svg id="robot-diagram" width="332" height="450">
-            <text x="40" y="340">Example SVG Robot Diagram</text>
-            <rect x="75" y="360" width="230" height="40"></rect>
-            <rect x="85" y="370" width="210" height="40"></rect>
-            <rect id="robot-arm" x="5" y="375" width="80" height="10"></rect>
-            <circle cx="100" cy="410" r="25"></circle>
-            <circle cx="260" cy="410" r="25"></circle>
-            <rect x="60" y="380" width="250" height="30"></rect>
-            <text id="team" x="185" y="405" text-anchor="middle">####</text>
-        </svg>
-    </article>
-
-    <aside>
-        <div id="example-section">
-            <button id="example-button">Change example value</button>
-            <p id="example-readout">Value is undefined</p>
+    <div class="row">
+        <div class="column">
+            <div class="camera-thumbnails">
+                <div class="thumb" id="camera1">
+                    <span class="live-dot"></span>
+                    <p>Camera 1</p>
+                </div>
+                <div class="thumb" id="camera2">
+                    <span class="live-dot"></span>
+                    <p>Camera 2</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <p></p>
+        </div>
+        <div class="column">
+            <img id="mainCamera" src="../images/fieldView.png" alt="Field View" width="320" height="240">
+            <div>
+                <p>Current State: <span id="currentState">IdleToIntake</span></p>
+                <p>Lunite Count: <span id="luniteCt">0</span></p>
+            </div>
         </div>
 
+        <!-- <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button> -->
+
+        <header>
+            <!-- Tells whether robot is connected to dashboard. -->
+            <div id="robot-state">Unknown state</div>
+            <!-- <button id="connect-button">Connect</button> -->
+        </header>
+
+
+        <!-- === ✅ NEW CAMERA SECTION ADDED BELOW === -->
+        <!-- <section id="camera" class="camera-container">
+        <div class="camera-thumbnails">
+            <div class="thumb" id="camera1">
+                <span class="live-dot"></span>
+                <p>Camera 1</p>
+            </div>
+            <div class="thumb" id="camera2">
+                <span class="live-dot"></span>
+                <p>Camera 2</p>
+            </div>
+        </div>
+
+        <div class="live-view" id="mainCamera">
+            <div class="overlay">
+                <p>Current State: <span id="currentState">IdleToIntake</span></p>
+                <p>Unit #: <span id="unitNumber">3</span></p>
+            </div>
+        </div>
+
+        <aside>
+            <h2 id="cameraTitle">Field View</h2>
+        </aside>
+    </section> -->
+        <!-- === ✅ END CAMERA SECTION === -->
+
+        <!-- <div id="shooter-status" class="status-box">Shooter</div> -->
+
+        <!-- <aside> -->
+        <!-- <div id="example-section">
+            <button id="example-button">Change example value</button>
+            <p id="example-readout">Value is undefined</p>
+        </div> -->
+
         <!-- Autonomous selector -->
-        <div class="select-container">
+        <!-- <div class="select-container">
             <select id="auto-select">
                 <option>No auto modes found</option>
             </select>
@@ -72,63 +101,72 @@
         <div>
             <p>Adjust arm height</p>
             <input id="arm-position" type="range" min="0" max="1200" value="770">
-        </div>
-    </aside>
+        </div> -->
+        <!-- </aside> -->
 
-    <div id="login">
+        <!-- <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
         <button id="connect" disabled>Connecting</button>
-    </div>
+    </div> -->
 
-    <!-- Existing Scripts -->
-    <script src="networktables/networktables.js"></script>
-    <script src="ui.js"></script>
-    <script src="connection.js"></script>
-    <script src="../node_modules/@frc-web-components/frc-web-components/build/frc-web-components.min.js"></script>
+        <!-- Existing Scripts -->
+        <script src="networktables/networktables.js"></script>
+        <script src="ui.js"></script>
+        <script src="connection.js"></script>
+        <script src="../node_modules/@frc-web-components/frc-web-components/build/frc-web-components.min.js"></script>
 
-    <script>
-        // FRC Web Components setup
-        webbitStore.addSourceProvider('NetworkTables');
-        webbitStore.setDefaultSourceProvider('NetworkTables');
-    </script>
+        <script>
+            // FRC Web Components setup
+            webbitStore.addSourceProvider('NetworkTables');
+            webbitStore.setDefaultSourceProvider('NetworkTables');
+        </script>
 
-    <!-- ✅ Timer Script -->
-    <script>
-        let totalSeconds = 135; // 2 minutes 15 seconds
-        let remainingSeconds = totalSeconds;
-        let timerInterval = null;
+        <!-- ✅ Timer Script -->
+        <script>
+            let totalSeconds = 135; // 2 minutes 15 seconds
+            let remainingSeconds = totalSeconds;
+            let timerInterval = null;
 
-        function updateDisplay() {
-            const minutes = Math.floor(remainingSeconds / 60);
-            const seconds = remainingSeconds % 60;
-            document.getElementById("timer").textContent =
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        function startTimer() {
-            if (!timerInterval) {
-                timerInterval = setInterval(() => {
-                    if (remainingSeconds > 0) {
-                        remainingSeconds--;
-                        updateDisplay();
-                    } else {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
-                        alert("Time's up!");
-                    }
-                }, 1000);
+            function updateDisplay() {
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+                document.getElementById("timer").textContent =
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
             }
-        }
 
-        function pauseTimer() {
-            NetworkTables.putValue('/Dashboard/Timer/Pause', true);
-            // clearInterval(timerInterval);
-            // timerInterval = null;
-        }
+            function startTimer() {
+                if (!timerInterval) {
+                    timerInterval = setInterval(() => {
+                        if (remainingSeconds > 0) {
+                            remainingSeconds--;
+                            updateDisplay();
+                        } else {
+                            clearInterval(timerInterval);
+                            timerInterval = null;
+                            alert("Time's up!");
+                        }
+                    }, 1000);
+                }
+            }
 
-        // Set initial display
-        updateDisplay();
-    </script>
+            function pauseTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+
+            // Set initial display
+            updateDisplay();
+        </script>
+
+        <!-- ✅ Simple Camera Label Switcher -->
+        <script>
+            document.getElementById("camera1").onclick = () => {
+                document.getElementById("cameraTitle").textContent = "Camera 1 View";
+            };
+            document.getElementById("camera2").onclick = () => {
+                document.getElementById("cameraTitle").textContent = "Camera 2 View";
+            };
+        </script>
 </body>
 
 </html>
