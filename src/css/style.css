@@ -3,9 +3,11 @@
     margin: 0;
     padding: 0;
 }
+
 ::-webkit-scrollbar {
     display: none;
 }
+
 body {
     font: 16px sans-serif;
     -webkit-user-select: none;
@@ -16,7 +18,12 @@ body {
     overflow: hidden;
     background: #222;
 }
-button, input[type="text"], input[type="number"], .select-container, select {
+
+button,
+input[type="text"],
+input[type="number"],
+.select-container,
+select {
     color: white;
     background: #444;
     border: none;
@@ -25,65 +32,136 @@ button, input[type="text"], input[type="number"], .select-container, select {
     cursor: pointer;
     outline: 0;
 }
+
 .select-container {
     padding: 0;
     display: inline-block;
 }
+
 select {
     border: none;
     background: none;
     color: white;
     height: 25px;
 }
-input[type="text"], input[type="number"] {
+
+input[type="text"],
+input[type="number"] {
     cursor: text;
 }
+
 input[type="checkbox"] {
     -webkit-filter: saturate(0);
     filter: saturate(0);
 }
+
 /* Major interface panes, aside, article, header, etc. */
-body > * {
+body>* {
     padding: 10px;
     position: fixed;
     overflow: scroll;
     background: #222;
 }
+
 #timer {
     font-family: monospace;
     display: block;
-    height: 20vh;
-    width: 30vw;
-    top: 0;
-    left: 0;
-    font-size: 20vh;
-    line-height: .8;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 12vh;
+    line-height: 0.8;
 }
+
 header {
+    display: flex;
+    column-gap: 10px;
     width: 20vw;
     height: 20vh;
     top: 0;
-    left: 30vw;
+    left: 60vw;
     color: white;
 }
-#camera {
-    padding: 0;
+
+article {
+    top: 5vh;
+    left: 38vw;
+    height: 100vh;
+    width: 60vw;
+    /* border: white 4px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+#connect-button {
+    max-height: 3vh;
+    border-radius: 10px;
+}
+
+.camera {
+    padding: 10px;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 50vw;
-    height: 80vh;
+    width: 640px;
+    height: 480px;
     overflow: hidden;
     background-color: #333;
+    border: 3px white solid;
+}
+
+#camera1 {
+    top: 0;
+    left: 0;
+    /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
+    /* background-image: url(""); */
+}
+
+#camera2 {
+    top: 480px;
+    left: 0;
     /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
     /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
 }
-article {
-    top: 0;
-    left: 50vw;
-    height: 100vh;
-    width: 35vw;
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #333;
+    min-height: 20vh;
+    min-width: 20vh;
+    max-height: 20vh;
+    max-width: 20vh;
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+
+    .info-label {
+        background-color: #444;
+        position: relative;
+        top: 0;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    p {
+        padding: 30px;
+        font-size: 20px;
+        background-color: none;
+        position: relative;
+        align-self: center;
+    }
+
 }
+
+.h-container {
+    display: flex;
+    column-gap: 10px;
+}
+
 svg * {
     stroke: white;
     fill: #222;
@@ -92,50 +170,30 @@ svg * {
     -ms-transform-origin: center;
     transform-origin: center;
 }
+
 text {
     font-size: 16px;
     letter-spacing: 2px;
     stroke: none;
     fill: white;
 }
-#gyro {
-    width: 175px;
-    height: 175px;
-    margin-left: 30px;
-    margin-top: 15px;
-}
-#gyro-arm {
-    -webkit-transform-origin: bottom;
-    -ms-transform-origin: bottom;
-    transform-origin: bottom;
-}
-#gyro-number {
-    font-size: 25px;
-    text-anchor: middle;
-}
-#robot-diagram {
-    position: absolute;
-    bottom: 1px;
-    right: 1vw;
-}
-#robot-arm {
-    -webkit-transform-origin: right;
-    -ms-transform-origin: right;
-    transform-origin: right;
-}
+
 #team {
     font-size: 28px;
     letter-spacing: -1px;
 }
+
 aside {
     right: 0;
     top: 0;
     width: 15vw;
     height: 100vh;
 }
-aside > * {
+
+aside>* {
     margin-bottom: 20px;
 }
+
 #login {
     position: fixed;
     display: none;
@@ -148,15 +206,19 @@ aside > * {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8)
 }
+
 body.login #login {
     display: flex;
 }
+
 #login :disabled {
     opacity: 0.6;
 }
-#login > * {
+
+#login>* {
     height: 40px;
 }
-#login > button {
+
+#login>button {
     margin-left: 5px;
 }
