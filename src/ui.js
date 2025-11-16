@@ -21,7 +21,8 @@ NetworkTables.addKeyListener('/SmartDashboard/luniteCount', (key, value) => {
 NetworkTables.addKeyListener('/SmartDashboard/gameTime', (key, value) => {
     // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
-    ui.timer.textContent = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + parseInt(value % 60);
+    temp = 135 - value
+    ui.timer.textContent = temp < 0 ? '0:00' : Math.floor(temp / 60) + ':' + (temp % 60 < 10 ? '0' : '') + parseInt(temp % 60);
 });
 
 // Load list of prewritten autonomous modes
