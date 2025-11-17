@@ -138,23 +138,22 @@ article {
     color: white;
     font-size: 20px;
     text-align: center;
+}
 
-    .info-label {
-        background-color: #444;
-        position: relative;
-        top: 0;
-        padding: 10px;
-        border-radius: 10px;
-    }
+.info-label {
+    background-color: #444;
+    position: relative;
+    top: 0;
+    padding: 10px;
+    border-radius: 10px;
+}
 
-    p {
-        padding: 30px;
-        font-size: 20px;
-        background-color: none;
-        position: relative;
-        align-self: center;
-    }
-
+.info-text {
+    padding: 30px;
+    font-size: 20px;
+    background-color: none;
+    position: relative;
+    align-self: center;
 }
 
 .h-container {
