@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -34,6 +34,28 @@
     </article>
     <!-- The sidebar of the dashboard. Designed for smaller control elements like selection boxes and small buttons. -->
 
+    <!-- === NEW FIELD PANEL HTML === -->
+    <div id="field-ui">
+        <h2>Field Visualization</h2>
+
+        <div id="field-wrapper">
+            <canvas id="fieldCanvas" width="800" height="400"></canvas>
+        </div>
+
+        <div id="field-controls">
+            <label>X Key:<select id="field-x-key">
+                    <option>(mock)</option>
+                </select></label>
+            <label>Y Key:<select id="field-y-key">
+                    <option>(mock)</option>
+                </select></label>
+            <label>Angle Key:<select id="field-angle-key">
+                    <option>(mock)</option>
+                </select></label>
+            <button id="field-reset-btn">Reset</button>
+        </div>
+    </div>
+
     <div id="login">
         <input id="connect-address" type="text" value="localhost" disabled>
         <button id="connect" disabled>Connecting</button>
@@ -46,6 +68,7 @@
         webbitStore.addSourceProvider('NetworkTables');
         webbitStore.setDefaultSourceProvider('NetworkTables');
     </script>
+    <script src="fieldview.js"></script>
 </body>
 
 </html>
