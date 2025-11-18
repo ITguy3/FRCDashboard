@@ -103,8 +103,8 @@ article {
 .camera {
     padding: 10px;
     position: fixed;
-    width: 640px;
-    height: 480px;
+    width: 320px;
+    height: 240px;
     overflow: hidden;
     background-color: #333;
     border: 3px white solid;
@@ -118,7 +118,7 @@ article {
 }
 
 #camera2 {
-    top: 480px;
+    top: 240px;
     left: 0;
     /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
     /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
@@ -220,4 +220,63 @@ body.login #login {
 
 #login>button {
     margin-left: 5px;
+}
+
+#field-ui {
+    position: fixed;
+    bottom: 0;
+    right: 15vw;
+    width: 35vw;
+    height: 45vh;
+    background: #1e1e1e;
+    border-left: 2px solid #444;
+    border-top: 2px solid #444;
+    padding: 10px;
+    overflow: hidden;
+    color: #fff;
+    z-index: 50;
+}
+
+#field-ui h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: var(--accent, #4ec9b0);
+    font-weight: bold;
+}
+
+#field-wrapper {
+    background: #111;
+    border: 1px solid #555;
+    padding: 5px;
+}
+
+#fieldCanvas {
+    width: 100%;
+    height: auto;
+    border: 1px solid #666;
+    background: #000;
+}
+
+#field-controls {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#field-controls label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+#field-controls button {
+    background: #2980b9;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+#field-controls button:hover {
+    background: #3bb3ff;
 }
